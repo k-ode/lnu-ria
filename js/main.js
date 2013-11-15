@@ -22,16 +22,16 @@
             jquery: '../bower_components/jquery/jquery',
             underscore: '../bower_components/underscore/underscore',
             backbone: '../bower_components/backbone/backbone',
-            backboneLocalstorage: 'lib/backbone.localStorage.async/backbone.localStorage.async.js',
+            backboneLocalStorage: 'lib/backbone.localStorage.async/backbone.localStorage.async.js',
         }
     });
 
     require([
         'backbone',
-        'views/app',
-        'routers/router',
-    ], function (Backbone, AppView, Workspace) {
-        new Workspace();
+        'view/app',
+        'router/router',
+    ], function (Backbone, AppView, AppRouter) {
+        new AppRouter();
         Backbone.history.start();
 
         // Initialize the application view
