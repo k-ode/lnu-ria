@@ -1,0 +1,22 @@
+{
+  "name": "lnu-ria",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kimgronqvist/lnu-ria",
+  "authors": [
+    "Kim Grönqvist <kimgronqvist@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.9",
+    "sass-bootstrap": "~3.0.2",
+    "backbone": "~1.1.0"
+  }
+}
