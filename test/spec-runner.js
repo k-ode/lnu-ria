@@ -34,12 +34,11 @@ require.config({
 window.store = 'TestStore'; // override Local storage store name for testing
 
 require([
-    'backbone',
-    'underscore',
     'jquery',
+    'backbone',
     'mocha',
     'chai'
-], function (Backbone, _, $, mocha, chai) {    
+], function ($, Backbone, mocha, chai) {    
     // Chai
     this.assert = chai.assert;
     this.expect = chai.expect;

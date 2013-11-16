@@ -28,13 +28,9 @@
 
     require([
         'backbone',
-        'view/app',
-        'router/router',
-    ], function (Backbone, AppView, AppRouter) {
-        new AppRouter();
+        'router/router'
+    ], function (Backbone, Router) {
+        var router = new Router();
         Backbone.history.start();
-
-        // Initialize the application view
-        new AppView();
     });
 })();

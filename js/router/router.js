@@ -1,14 +1,19 @@
-define([
-    'jquery',
-    'backbone'
-], function ($, Backbone) {
+define(function (require) {
     'use strict';
 
-    var AppRouter = Backbone.Router.extend({
+    var $ = require('jquery'),
+        Backbone = require('backbone'),
+        HomeView = require('view/home'),
+
+        homeView = new HomeView();
+
+    return Backbone.Router.extend({
         routes: {
-            "*actions": "defaultRoute"
+            "": "home"
+        },
+
+        home: function () {
+            homeView.render();
         }
     });
-
-    return AppRouter;
 });
