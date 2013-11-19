@@ -19,10 +19,10 @@
             }
         },
         paths: {
-            jquery: '../bower_components/jquery/jquery',
-            underscore: '../bower_components/underscore/underscore',
-            backbone: '../bower_components/backbone/backbone',
-            backboneLocalStorage: 'lib/backbone.localStorage.async/backbone.localStorage.async.js',
+            jquery: '../vendor/jquery/jquery',
+            underscore: '../vendor/underscore/underscore',
+            backbone: '../vendor/backbone/backbone',
+            backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async.js',
         }
     });
 

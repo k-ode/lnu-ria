@@ -22,12 +22,12 @@ require.config({
         }
     },
     paths: {
-        jquery: '../bower_components/jquery/jquery',
-        underscore: '../bower_components/underscore/underscore',
-        backbone: '../bower_components/backbone/backbone',
-        backboneLocalStorage: '../js/lib/backbone.localStorage.async/backbone.localStorage.async.js',
-        mocha: '../bower_components/mocha/mocha',
-        chai: '../bower_components/chai/chai'
+        jquery: '../vendor/jquery/jquery',
+        underscore: '../vendor/underscore/underscore',
+        backbone: '../vendor/backbone/backbone',
+        backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async.js',
+        mocha: '../vendor/mocha/mocha',
+        chai: '../vendor/chai/chai'
     }
 });
 
