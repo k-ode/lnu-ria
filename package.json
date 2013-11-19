@@ -1,19 +1,9 @@
 {
-    "name": "lnu-ria",
-    "version": "0.0.0",
-    "description": "lnu-ria\r =======",
-    "main": "js/main.js",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/kimgronqvist/lnu-ria.git"
-    },
-    "author": "Kim Grönqvist",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/kimgronqvist/lnu-ria/issues"
-    },
-    "homepage": "https://github.com/kimgronqvist/lnu-ria",
-    "devDependencies": {
-        "docco": "~0.6.2"
-    }
+  "name": "lnu-ria",
+  "version": "0.0.0",
+  "devDependencies": {
+    "docco": "~0.6.2",
+    "grunt": "~0.4.1",
+    "grunt-gh-pages": "~0.8.1"
+  }
 }
