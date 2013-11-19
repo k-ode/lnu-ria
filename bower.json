@@ -15,12 +15,12 @@
     "tests"
   ],
   "dependencies": {
-    "sass-bootstrap": "~3.0.2",
-    "jquery": "~2.0.3",
     "backbone": "~1.1.0",
     "requirejs": "~2.1.9",
     "underscore": "~1.5.2",
     "mocha": "~1.14.0",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "jquery": "~2.0.3",
+    "normalize.scss": "~2.1.3"
   }
 }
