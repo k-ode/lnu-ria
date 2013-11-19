@@ -3,8 +3,8 @@ lnu-ria
 
 A backbone application for the course RIA development in JavaScript.
 
-Use cases
----------
+Use cases and requirements
+--------------------------
 The goal of the application is to store, search and filter recipes.
 
 These are the basic use cases:
@@ -13,6 +13,10 @@ These are the basic use cases:
 * Filter recipes of a certain category (chicken, soup, fish, meat, etc.).
 * Search recipes by name and content.
 * Filter recipes by the date they were entered.
+
+Requirements:
+
+* Filtering and searching should be done in real time
 
 Install
 -------
