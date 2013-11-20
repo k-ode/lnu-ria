@@ -23,8 +23,12 @@ Install
 
 Install dependencies with
 
-    bower install 
+    bower install && npm install
 
-To generate documentation with Docco, also do
+To generate documentation with Docco, do
 
-    npm install
+    docco js/*.js
+
+This project uses Grunt for build tasks. Currently only using the 'copy' task. 
+
+    grunt copy
