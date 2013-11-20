@@ -18,20 +18,12 @@ module.exports = function(grunt) {
                     { expand: true, cwd: 'bower_components/', src: ['backbone/backbone.js'], dest: 'vendor/' }
                 ]
             }
-        },
-
-        'gh-pages': {
-            options: {
-                base: '.'
-            },
-            src: '**/*'
         }
     });
 
-    grunt.loadNpmTasks('grunt-gh-pages');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task(s).
-    grunt.registerTask('default', ['gh-pages']);
+    grunt.registerTask('default', ['copy']);
 
 };
