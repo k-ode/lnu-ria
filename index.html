@@ -5,11 +5,35 @@
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <!-- <link rel="stylesheet" href="css/screen.css"> -->
+        <link rel="stylesheet" href="css/screen.css">
         <title>RIA development with JavaScript</title>
         
     </head>
     <body>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th width="1%"><input type="checkbox" name="selectAll" id="selectAll"/></th>
+                    <th class="sort sortable" data-sortBy="name">Name</th>
+                    <th class="sort sortable" data-sortBy="category">Kategori</th>
+                    <th class="sort sortable" data-sortBy="instructions">Instruktioner</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <input type="text" id="filter" placeholder="filter me" />
+        <script type="text/template" id="recipeTmpl">
+            <% _.each(recipies, function(recipe){ %>
+            <tr data-id="<%= recipe.get('id') %>">
+                <td><input type="checkbox" name="select" id="select"/></td>
+                <td class="editable editTxt" title="name"><%= recipe.get('name') %></td>
+                <td class="editable editTxt" title="category"><%= recipe.get('category') %></td>
+                <td class="editable editTel" title="instructions"><%= recipe.get('instructions') %></td>
+            </tr>
+            <% }) %>
+        </script>
+        
         <script data-main="js/main" src="vendor/requirejs/require.js"></script>
     </body>
 </html>
