@@ -1,6 +1,7 @@
 {
     "globals": {
         "require": false,
+        "define": false,
         "console": false
     },
 
