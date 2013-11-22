@@ -29,8 +29,10 @@
 
     require([
         'backbone',
+        'underscore',
+        'util/extensions',
         'router/router'
-    ], function (Backbone, Router) {
+    ], function (Backbone, _, extensions, Router) {
         var router = new Router();
         Backbone.history.start();
     });

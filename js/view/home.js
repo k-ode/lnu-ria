@@ -5,7 +5,7 @@ define(function (require) {
         Backbone = require('backbone'),
         _ = require('underscore'),
         filterService = require('service/filter');
-
+    
     return Backbone.View.extend({
         el: 'table tbody',
         template: _.template($('#recipeTmpl').html()),
@@ -17,6 +17,8 @@ define(function (require) {
         render: function () {
             console.log(this.template);
             console.log(this.collection.models);
+            console.log(this.collection.filterCollection);
+
             $(this.el).append(this.template({
                 recipies: this.collection.models
             }));
