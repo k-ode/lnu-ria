@@ -2,7 +2,10 @@
     "globals": {
         "require": false,
         "define": false,
-        "console": false
+        "console": false,
+        "expect": false,
+        "Backbone": false,
+        "_": false
     },
 
     "browser": true
