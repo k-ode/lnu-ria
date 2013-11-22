@@ -3,8 +3,7 @@ define(function (require) {
 
     var $ = require('jquery'),
         Backbone = require('backbone'),
-        _ = require('underscore'),
-        filterService = require('service/filter');
+        _ = require('underscore');
     
     return Backbone.View.extend({
         el: 'table tbody',
@@ -15,10 +14,6 @@ define(function (require) {
         },
 
         render: function () {
-            console.log(this.template);
-            console.log(this.collection.models);
-            console.log(this.collection.filterCollection);
-
             $(this.el).append(this.template({
                 recipies: this.collection.models
             }));
