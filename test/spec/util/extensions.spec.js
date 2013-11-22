@@ -16,13 +16,13 @@ describe("util.extensions", function () {
         {
             id: 1,
             name: 'recept1',
-            instructions: 'instruction one',
+            instructions: 'instructionone',
             category: 'soppa'
         },
         {
             id: 2,
             name: 'recept2',
-            instructions: 'instruction two',
+            instructions: 'instruction_two',
             category: 'hey'
         },
         {
@@ -50,6 +50,11 @@ describe("util.extensions", function () {
             
             expect(col.filterCollection('yo')).to.have.length(1);
             expect(col.filterCollection('yo')[0].get('name')).to.have.string('recept3');
+        });
+
+        it(("should return all models with empty string as arg"), function () {
+            expect(col.filterCollection('')).to.have.length(3);
+            expect(_.filterCollection(col, '')).to.have.length(3);
         });
     });
 });
