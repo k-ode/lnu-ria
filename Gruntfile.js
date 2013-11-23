@@ -3,8 +3,16 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-
-        'copy': {
+        shell: {
+            'mocha-phantomjs': {
+                command: 'mocha-phantomjs -R min http://localhost:8000/test/index.html',
+                options: {
+                    stdout: true,
+                    stderr: true
+                }
+            },
+        },
+        copy: {
             vendor: {
                 files: [
                     // includes files within path and its sub-directories
@@ -18,12 +26,20 @@ module.exports = function(grunt) {
                     { expand: true, cwd: 'bower_components/', src: ['requirejs-text/text.js'], dest: 'vendor/' }
                 ]
             }
+        },
+        watch: {
+            scripts: {
+                files: ['js/**/*.js', 'test/**/*.js'],
+                tasks: ['shell:mocha-phantomjs']
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-shell');
 
     // Default task(s).
-    grunt.registerTask('default', ['copy']);
+    grunt.registerTask('default', ['copy']);    
 
 };

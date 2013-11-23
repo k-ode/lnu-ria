@@ -4,6 +4,11 @@
   "devDependencies": {
     "docco": "~0.6.2",
     "grunt": "~0.4.1",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "mocha-phantomjs": "~3.1.6",
+    "phantomjs": "~1.9.2-4",
+    "grunt-shell": "~0.6.1",
+    "mocha": "~1.14.0",
+    "grunt-contrib-watch": "~0.5.3"
   }
 }
