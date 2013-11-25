@@ -16,6 +16,12 @@
             backboneLocalStore: {
                 deps: ['backbone'],
                 exports: 'Store'
+            },
+            backboneModelBinder: {
+                deps: ['backbone']
+            },
+            backboneCollectionBinder: {
+                deps: ['backbone', 'backboneModelBinder']
             }
         },
         paths: {
@@ -23,16 +29,19 @@
             jquery: '../vendor/jquery/jquery',
             underscore: '../vendor/underscore/underscore',
             backbone: '../vendor/backbone/backbone',
-            backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async.js',
+            backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async',
+            backboneModelBinder: '../vendor/backbone.modelBinder/Backbone.ModelBinder',
+            backboneCollectionBinder: '../vendor/backbone.modelBinder/Backbone.CollectionBinder'
         }
-    });
+});
 
     require([
         'backbone',
         'underscore',
+        'backboneCollectionBinder',
         'util/extensions',
         'router/router'
-    ], function (Backbone, _, extensions, Router) {
+    ], function (Backbone, _, bcb, extensions, Router) {
         var router = new Router();
         Backbone.history.start();
     });

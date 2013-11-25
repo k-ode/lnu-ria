@@ -3,19 +3,16 @@ define(function (require) {
 
     var recipies = [
         {
-            id: 1,
             name: 'recept1',
             instructions: 'instruction one',
             category: 'soppa'
         },
         {
-            id: 2,
             name: 'recept2',
             instructions: 'instruction two',
             category: 'hey'
         },
         {
-            id: 3,
             name: 'recept3',
             instructions: 'instruction three',
             category: 'yo'
@@ -27,10 +24,16 @@ define(function (require) {
         HomeView = require('view/home'),
         RecipiesCollection = require('collection/recipies'),
 
-        recipiesCollection = new RecipiesCollection(recipies),
-        homeView = new HomeView({
-            collection: recipiesCollection
-        });
+        recipesCollection = new RecipiesCollection(recipies),
+        homeView = new HomeView();
+
+    var viewCreator = function (model) { return new HomeView({model: model}); };
+
+    var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(viewCreator);
+
+    var collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
+
+    collectionBinder.bind(recipesCollection, $('tbody'));
 
     return Backbone.Router.extend({
         routes: {

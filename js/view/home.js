@@ -4,20 +4,33 @@ define(function (require) {
     var $ = require('jquery'),
         Backbone = require('backbone'),
         _ = require('underscore'),
-        recipesTemplate = require('text!template/recipes.html');
+        recipeTemplate = require('text!template/recipe.html');
     
     return Backbone.View.extend({
-        el: 'table tbody',
-        template: _.template(recipesTemplate),
+        tagName: 'tr',
+        template: _.template(recipeTemplate),
+        _modelBinder: undefined,
 
         initialize: function () {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
+            this._modelBinder = new Backbone.ModelBinder();
+        },
+
+        close: function () {
+            this._modelBinder.unbind();
+            this.off();
+            this.undelegateEvents();
+            this.remove();
         },
 
         render: function () {
-            $(this.el).append(this.template({
-                recipies: this.collection.models
-            }));
+            this.$el.html(this.template);
+            this._modelBinder.bind(
+                this.model,
+                this.el,
+                Backbone.ModelBinder.createDefaultBindings(this.el, 'data-name')
+            );
+            return this;
         }
 
     });
