@@ -6,11 +6,23 @@ define(function (require) {
         _ = require('underscore'),
         RecipesCollection = require('collection/recipes'),
         RecipesView = require('view/recipes');
-    
+
     return Backbone.View.extend({
         _collectionBinder: undefined,
+        filteredCollection: null,
+        recipesCollection: null,
+        
+        modelCreateCount: 3,
 
         el: 'body',
+
+        // Delegated events
+        events: {
+            'click #createModel': 'createModel',
+            'click #removeModel': 'removeModel',
+            'click #resetCollection': 'resetCollection',
+            'keyup #filter': 'filter'
+        },
 
         viewCreator: function (model) { return new RecipesView({model: model}); },
         
@@ -21,7 +33,7 @@ define(function (require) {
         },
 
         render: function () {            
-            var recipies = [
+            var recipes = [
                 {
                     name: 'recept1',
                     instructions: 'instruction one',
@@ -39,36 +51,35 @@ define(function (require) {
                 }
             ];
 
-            var recipesCollection = new RecipesCollection(recipies);
-            var filteredCollection = new RecipesCollection(recipies);
+            this.recipesCollection = new RecipesCollection(recipes);
+            this.filteredCollection = new RecipesCollection(recipes);
 
-            this._collectionBinder.bind(filteredCollection, this.$('tbody'));
-            
-            var modelCreateCount = 3;
-            $('#createModel').on('click', function(){
-                modelCreateCount++;
-                filteredCollection.add({name: 'recept ' + modelCreateCount, category: 'yoyo', instructions: 'instruction four'});
-                recipesCollection.add({name: 'recept ' + modelCreateCount, category: 'yoyo', instructions: 'instruction four'});
-            });
+            this._collectionBinder.bind(this.filteredCollection, this.$('tbody'));
 
-            $('#removeModel').on('click', function(){
-                if(filteredCollection.length > 0){
-                    filteredCollection.remove(filteredCollection.at(filteredCollection.length - 1));
-                    recipesCollection.remove(recipesCollection.at(recipesCollection.length - 1));
-                }
-            });
-
-            $('#resetCollection').on('click', function(){
-                filteredCollection.reset(recipesCollection.models);
-            });
-
-            $('#filter').on('keyup', function(e) {
-                var filterValue = $(e.currentTarget).val();
-                filteredCollection.reset(recipesCollection.models);
-                filteredCollection.reset(filteredCollection.filterCollection(filterValue));
-            });
-            
             return this;
+        },
+
+        createModel: function () {
+            this.modelCreateCount++;
+            this.filteredCollection.add({name: 'recept ' + this.modelCreateCount, category: 'yoyo', instructions: 'instruction four'});
+            this.recipesCollection.add({name: 'recept ' + this.modelCreateCount, category: 'yoyo', instructions: 'instruction four'});
+        },
+
+        removeModel: function () {
+            if(this.filteredCollection.length > 0){
+                this.filteredCollection.remove(this.filteredCollection.at(this.filteredCollection.length - 1));
+                this.recipesCollection.remove(this.recipesCollection.at(this.recipesCollection.length - 1));
+            }
+        },
+
+        resetCollection: function () {
+            this.filteredCollection.reset(this.recipesCollection.models);
+        },
+
+        filter: function (e) {
+            var filterValue = $(e.currentTarget).val();
+            this.filteredCollection.reset(this.recipesCollection.models);
+            this.filteredCollection.reset(this.filteredCollection.filterCollection(filterValue));
         },
 
         close: function () {
