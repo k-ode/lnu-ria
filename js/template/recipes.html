@@ -1,0 +1,8 @@
+<% _.each(recipies, function(recipe){ %>
+<tr data-id="<%= recipe.get('id') %>">
+    <td><input type="checkbox" name="select" id="select"/></td>
+    <td class="editable editTxt" title="name"><%= recipe.get('name') %></td>
+    <td class="editable editTxt" title="category"><%= recipe.get('category') %></td>
+    <td class="editable editTel" title="instructions"><%= recipe.get('instructions') %></td>
+</tr>
+<% }) %>

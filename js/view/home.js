@@ -3,11 +3,12 @@ define(function (require) {
 
     var $ = require('jquery'),
         Backbone = require('backbone'),
-        _ = require('underscore');
+        _ = require('underscore'),
+        recipesTemplate = require('text!template/recipes.html');
     
     return Backbone.View.extend({
         el: 'table tbody',
-        template: _.template($('#recipeTmpl').html()),
+        template: _.template(recipesTemplate),
 
         initialize: function () {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
