@@ -5,7 +5,8 @@ define(function (require) {
         Backbone = require('backbone'),
         _ = require('underscore'),
         Recipes = require('collection/recipes'),
-        RecipesView = require('view/recipes');
+        RecipesView = require('view/recipes'),
+        when = require('when');
 
     return Backbone.View.extend({
         _collectionBinder: undefined,
@@ -30,31 +31,10 @@ define(function (require) {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
             var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(this.viewCreator);
             this._collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
-
-            this.recipesCollection = new Recipes();
-            this.recipesCollection.fetch();
-            this.filteredCollection = new Recipes(this.recipesCollection.models);
         },
 
         render: function () {            
-            // var recipes = [
-            //     {
-            //         name: 'recept1',
-            //         instructions: 'instruction one',
-            //         category: 'soppa'
-            //     },
-            //     {
-            //         name: 'recept2',
-            //         instructions: 'instruction two',
-            //         category: 'hey'
-            //     },
-            //     {
-            //         name: 'recept3',
-            //         instructions: 'instruction three',
-            //         category: 'yo'
-            //     }
-            // ];
-
+            this.filteredCollection = new Recipes(this.recipesCollection.models);
             this._collectionBinder.bind(this.filteredCollection, this.$('tbody'));
 
             return this;
