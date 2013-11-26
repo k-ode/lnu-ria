@@ -13,7 +13,7 @@
                 ],
                 exports: 'Backbone'
             },
-            backboneLocalStore: {
+            backboneLocalStorage: {
                 deps: ['backbone'],
                 exports: 'Store'
             },

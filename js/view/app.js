@@ -4,7 +4,7 @@ define(function (require) {
     var $ = require('jquery'),
         Backbone = require('backbone'),
         _ = require('underscore'),
-        RecipesCollection = require('collection/recipes'),
+        Recipes = require('collection/recipes'),
         RecipesView = require('view/recipes');
 
     return Backbone.View.extend({
@@ -30,29 +30,30 @@ define(function (require) {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
             var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(this.viewCreator);
             this._collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
+
+            this.recipesCollection = new Recipes();
+            this.recipesCollection.fetch();
+            this.filteredCollection = new Recipes(this.recipesCollection.models);
         },
 
         render: function () {            
-            var recipes = [
-                {
-                    name: 'recept1',
-                    instructions: 'instruction one',
-                    category: 'soppa'
-                },
-                {
-                    name: 'recept2',
-                    instructions: 'instruction two',
-                    category: 'hey'
-                },
-                {
-                    name: 'recept3',
-                    instructions: 'instruction three',
-                    category: 'yo'
-                }
-            ];
-
-            this.recipesCollection = new RecipesCollection(recipes);
-            this.filteredCollection = new RecipesCollection(recipes);
+            // var recipes = [
+            //     {
+            //         name: 'recept1',
+            //         instructions: 'instruction one',
+            //         category: 'soppa'
+            //     },
+            //     {
+            //         name: 'recept2',
+            //         instructions: 'instruction two',
+            //         category: 'hey'
+            //     },
+            //     {
+            //         name: 'recept3',
+            //         instructions: 'instruction three',
+            //         category: 'yo'
+            //     }
+            // ];
 
             this._collectionBinder.bind(this.filteredCollection, this.$('tbody'));
 
@@ -61,8 +62,15 @@ define(function (require) {
 
         createModel: function () {
             this.modelCreateCount++;
-            this.filteredCollection.add({name: 'recept ' + this.modelCreateCount, category: 'yoyo', instructions: 'instruction four'});
-            this.recipesCollection.add({name: 'recept ' + this.modelCreateCount, category: 'yoyo', instructions: 'instruction four'});
+            var model = {
+                id: this.modelCreateCount,
+                name: 'recept ' + this.modelCreateCount, 
+                category: 'yoyo', 
+                instructions: 'instruction four'
+            };
+            
+            this.filteredCollection.add(model);
+            this.recipesCollection.create(model);
         },
 
         removeModel: function () {
