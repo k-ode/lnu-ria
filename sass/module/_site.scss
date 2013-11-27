@@ -1,0 +1,28 @@
+.site-left {
+    height: 100%;
+}
+
+.site-left nav {
+    position: relative;
+    left: 30%;
+    top: 40%;
+}
+
+.site-middle {
+    height: 100%;
+}
+
+.site-middle .filter {
+    position: relative;
+    left: 20%;
+    top: 40%;
+}
+
+.site-right {
+    max-height: 100%;
+    overflow: auto;
+}
+
+.site-right tr {
+    background-color: #f2f2f2;
+}

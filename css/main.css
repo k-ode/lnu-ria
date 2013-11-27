@@ -684,41 +684,61 @@ h3, .h3 {
 }
 
 /* line 25, ../sass/module/_grid.scss */
-.col-2-3 {
-  width: 66.66%;
+.col-2-10 {
+  width: 20%;
 }
 
 /* line 28, ../sass/module/_grid.scss */
-.col-1-3 {
-  width: 33.33%;
+.col-3-10 {
+  width: 30%;
 }
 
 /* line 31, ../sass/module/_grid.scss */
-.col-1-2 {
+.col-5-10 {
   width: 50%;
 }
 
-/* line 34, ../sass/module/_grid.scss */
-.col-1-4 {
-  width: 25%;
-}
-
-/* line 37, ../sass/module/_grid.scss */
-.col-1-8 {
-  width: 12.5%;
-}
-
-/* line 40, ../sass/module/_grid.scss */
-.col-7-8 {
-  width: 87.5%;
-}
-
 /* Opt-in outside padding  */
-/* line 45, ../sass/module/_grid.scss */
+/* line 36, ../sass/module/_grid.scss */
 .grid-pad {
   padding: 30px 0 30px 30px;
 }
-/* line 47, ../sass/module/_grid.scss */
+/* line 38, ../sass/module/_grid.scss */
 .grid-pad [class*='col-']:last-of-type {
   padding-right: 30px;
+}
+
+/* line 1, ../sass/module/_site.scss */
+.site-left {
+  height: 100%;
+}
+
+/* line 5, ../sass/module/_site.scss */
+.site-left nav {
+  position: relative;
+  left: 30%;
+  top: 40%;
+}
+
+/* line 11, ../sass/module/_site.scss */
+.site-middle {
+  height: 100%;
+}
+
+/* line 15, ../sass/module/_site.scss */
+.site-middle .filter {
+  position: relative;
+  left: 20%;
+  top: 40%;
+}
+
+/* line 21, ../sass/module/_site.scss */
+.site-right {
+  max-height: 100%;
+  overflow: auto;
+}
+
+/* line 26, ../sass/module/_site.scss */
+.site-right tr {
+  background-color: #f2f2f2;
 }

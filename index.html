@@ -10,22 +10,47 @@
         
     </head>
     <body>
-        <input type="button" id="createModel" value="Create Model"/>
-        <input type="button" id="removeModel" value="Remove Last Model"/>
-        <input type="button" id="resetCollection" value="Reset Collection"/>
-        <input type="text" id="filter" placeholder="filter me" />       
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Kategori</th>
-                    <th>Instruktioner</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table> 
+
+        <div class="col-2-10 site-left">
+            <nav>
+                <p>
+                    <a href="#">Recept</a>
+                </p>
+                <p>
+                    <a href="#" id="createModel">Lägg till</a>
+                </p>
+                <p>
+                    <a href="#" id="removeModel">Ta bort</a>
+                </p>
+                <p>
+                    <a href="#" id="resetCollection">Reset</a>
+                </p>
+            </nav>
+        </div>
+
+        <div class="col-3-10 site-middle">
+            <div class="filter">
+                <input type="text" id="filter" placeholder="filter me" />
+                <p>Kategori combobox</p>
+                <p>Datum från</p>
+                <p>Datum till</p>
+            </div>
+        </div>
+
+        <div class="col-5-10 site-right">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Kategori</th>
+                        <th>Instruktioner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
         <script data-main="js/main" src="vendor/requirejs/require.js"></script>
     </body>
 </html>
