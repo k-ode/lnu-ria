@@ -1,0 +1,54 @@
+@include establish-baseline;
+
+html {
+  font-family: 'Arial';
+  height: 100%;
+}
+
+body {
+  background-color: $white;
+  height: 100%;
+}
+
+a {
+  color: $black;
+  &:hover, &:focus {
+    color: darken($black, 20%);
+  }
+}
+
+p {
+  @include leader(0);
+  @include trailer(1);
+  &:last-child {
+    @include trailer(0);
+  }
+}
+
+// Lists
+ul, ol {
+  @include leader(0);
+  @include trailer(1);
+  padding-left: rhythm(1.5);
+  li {
+    @include trailer(0);
+  }
+}
+
+h1, .h1 {
+  @include adjust-font-size-to(32px);
+  @include leader(0);
+  @include trailer(1, 32px);
+}
+
+h2, .h2 {
+  @include adjust-font-size-to(24px);
+  @include leader(0);
+  @include trailer(1, 24px);
+}
+
+h3, .h3 {
+  @include adjust-font-size-to(19px);
+  @include leader(0);
+  @include trailer(1, 19px);
+}
