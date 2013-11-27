@@ -31,6 +31,13 @@ define(function (require) {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
             var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(this.viewCreator);
             this._collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
+
+            // Throttle filter to keep UI responsive
+            this.filter = _.throttle(function (e) {
+                var filterValue = $(e.currentTarget).val();
+                this.filteredCollection.reset(this.recipesCollection.models);
+                this.filteredCollection.reset(this.filteredCollection.filterCollection(filterValue));
+            }, 1000);
         },
 
         render: function () {            
@@ -62,12 +69,6 @@ define(function (require) {
 
         resetCollection: function () {
             this.filteredCollection.reset(this.recipesCollection.models);
-        },
-
-        filter: function (e) {
-            var filterValue = $(e.currentTarget).val();
-            this.filteredCollection.reset(this.recipesCollection.models);
-            this.filteredCollection.reset(this.filteredCollection.filterCollection(filterValue));
         },
 
         close: function () {
