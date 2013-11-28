@@ -3,33 +3,24 @@ define(function (require) {
 
     var $ = require('jquery'),
         Backbone = require('backbone'),
+        CollectionBinder = require('backboneCollectionBinder'),
         AppView = require('view/app'),
         Recipes = require('collection/recipes'),
-        when = require('when'),
-        appView = new AppView();
+        RecipesView = require('view/recipes'),
+        when = require('when');
 
     // TODO: Consider refactor of loading data
     function loadRecipes() {
         var deferred = when.defer();
-        appView.recipesCollection = new Recipes();
-        appView.recipesCollection.fetch({
+        var recipesCollection = new Recipes();
+        recipesCollection.fetch({
             success: function () {
                 console.log("fetched!");
-                deferred.resolve();
+                deferred.resolve(recipesCollection);
             }
         });
 
         return deferred.promise;
-    }
-
-    // Load categories here etc.
-    
-    function loadData() {
-        var deferreds = [];
-        
-        deferreds.push(loadRecipes());
-
-        return when.all(deferreds);
     }
 
     return Backbone.Router.extend({
@@ -38,10 +29,13 @@ define(function (require) {
         },
 
         app: function () {
-            loadData().then(
-                function success () {
-                    console.log("got data!");
-                    appView.render();
+            loadRecipes().then(
+                function success (recipesCollection) {
+                    var viewCreator = function (model) { return new RecipesView({model: model}); };
+                    var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(viewCreator);
+                    var collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
+                    var appView = new AppView({collection: recipesCollection});
+                    appView.render(collectionBinder);
                 }
             );
         }

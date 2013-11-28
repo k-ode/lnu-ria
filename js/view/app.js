@@ -5,7 +5,6 @@ define(function (require) {
         Backbone = require('backbone'),
         _ = require('underscore'),
         Recipes = require('collection/recipes'),
-        RecipesView = require('view/recipes'),
         when = require('when');
 
     return Backbone.View.extend({
@@ -22,29 +21,40 @@ define(function (require) {
             'click #createModel': 'createModel',
             'click #removeModel': 'removeModel',
             'click #resetCollection': 'resetCollection',
-            'keyup #filter': 'filter'
+            'keyup #search': 'search'
         },
 
-        viewCreator: function (model) { return new RecipesView({model: model}); },
-        
         initialize: function () {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
-            var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(this.viewCreator);
-            this._collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
 
-            // Throttle filter to keep UI responsive
-            this.filter = _.throttle(function (e) {
-                var filterValue = $(e.currentTarget).val();
+            // Elements
+            this.$search = this.$('#search');
+
+            // Throttle updates to keep UI responsive
+            this.filterBySearch = _.throttle(function (searchString) {
+                var newFilteredCollection = this.filteredCollection.filterCollection(searchString);
                 this.filteredCollection.reset(this.recipesCollection.models);
-                this.filteredCollection.reset(this.filteredCollection.filterCollection(filterValue));
+                this.filteredCollection.reset(newFilteredCollection);
             }, 1000);
+
+            // Collection
+            this.recipesCollection = this.collection;
+            this.filteredCollection = new Recipes(this.collection.models);
         },
 
-        render: function () {            
-            this.filteredCollection = new Recipes(this.recipesCollection.models);
+        render: function (collectionBinder) {
+            this._collectionBinder = collectionBinder;
             this._collectionBinder.bind(this.filteredCollection, this.$('tbody'));
+        },
 
-            return this;
+        search: function () {
+            var searchString = this.getSearchString();
+            
+            this.filterBySearch(searchString);
+        },
+
+        getSearchString: function () {
+            return this.$search.val().trim();
         },
 
         createModel: function () {
