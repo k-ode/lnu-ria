@@ -29,13 +29,17 @@ define(function (require) {
         },
 
         app: function () {
+            var viewCreator = function (model) { return new RecipesView({model: model}); };
+            var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(viewCreator);
+            var collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
+
             loadRecipes().then(
                 function success (recipesCollection) {
-                    var viewCreator = function (model) { return new RecipesView({model: model}); };
-                    var elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(viewCreator);
-                    var collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
-                    var appView = new AppView({collection: recipesCollection});
-                    appView.render(collectionBinder);
+                    var appView = new AppView({
+                        collection: recipesCollection,
+                        collectionBinder: collectionBinder
+                    });
+                    appView.render();
                 }
             );
         }

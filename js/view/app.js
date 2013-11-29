@@ -9,9 +9,9 @@ define(function (require) {
 
     return Backbone.View.extend({
         _collectionBinder: undefined,
-        filteredCollection: null,
-        recipesCollection: null,
-        
+        _filteredCollection: undefined,
+        _recipesCollection: undefined,
+
         modelCreateCount: 3,
 
         el: 'body',
@@ -24,27 +24,33 @@ define(function (require) {
             'keyup #search': 'search'
         },
 
-        initialize: function () {
+        // Needs at least a Backbone collection and collectionBinder.
+        initialize: function (options) {
             _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
 
-            // Elements
+            if (_.isUndefined(options.collectionBinder)) 
+                throw 'collectionBinder must be defined';
+            if (_.isUndefined(options.collection))
+                throw 'collection must be defined';
+
+            var collectionBinder = options.collectionBinder,
+                collection = options.collection;
+               
+            // DOM elements
             this.$search = this.$('#search');
 
-            // Throttle updates to keep UI responsive
-            this.filterBySearch = _.throttle(function (searchString) {
-                var newFilteredCollection = this.filteredCollection.filterCollection(searchString);
-                this.filteredCollection.reset(this.recipesCollection.models);
-                this.filteredCollection.reset(newFilteredCollection);
-            }, 1000);
+            // Keep a copy of original collection to filter on
+            this._recipesCollection = collection;
+            this._filteredColletion = new collection.constructor(collection.models);
 
-            // Collection
-            this.recipesCollection = this.collection;
-            this.filteredCollection = new Recipes(this.collection.models);
+            // Collection binder
+            this._collectionBinder = collectionBinder;
         },
 
-        render: function (collectionBinder) {
-            this._collectionBinder = collectionBinder;
-            this._collectionBinder.bind(this.filteredCollection, this.$('tbody'));
+        render: function () {
+            this._collectionBinder.bind(this._filteredColletion, this.$('tbody'));
+            
+            return this;
         },
 
         search: function () {
@@ -57,6 +63,13 @@ define(function (require) {
             return this.$search.val().trim();
         },
 
+        // Throttle updates to keep UI responsive
+        filterBySearch: _.throttle(function (searchString) {
+            this._filteredColletion.reset(this._recipesCollection.models);
+            var newFilteredCollection = this._filteredColletion.filterCollection(searchString);
+            this._filteredColletion.reset(newFilteredCollection);
+        }, 1000),
+
         createModel: function () {
             this.modelCreateCount++;
             var model = {
@@ -66,19 +79,19 @@ define(function (require) {
                 instructions: 'instruction four'
             };
             
-            this.filteredCollection.add(model);
-            this.recipesCollection.create(model);
+            this._filteredColletion.add(model);
+            this._recipesCollection.create(model);
         },
 
         removeModel: function () {
-            if(this.filteredCollection.length > 0){
-                this.filteredCollection.remove(this.filteredCollection.at(this.filteredCollection.length - 1));
-                this.recipesCollection.remove(this.recipesCollection.at(this.recipesCollection.length - 1));
+            if(this._filteredColletion.length > 0){
+                this._filteredColletion.remove(this._filteredColletion.at(this._filteredColletion.length - 1));
+                this._recipesCollection.remove(this._recipesCollection.at(this._recipesCollection.length - 1));
             }
         },
 
         resetCollection: function () {
-            this.filteredCollection.reset(this.recipesCollection.models);
+            this._filteredColletion.reset(this._recipesCollection.models);
         },
 
         close: function () {
