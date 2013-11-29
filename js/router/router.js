@@ -25,7 +25,8 @@ define(function (require) {
 
     return Backbone.Router.extend({
         routes: {
-            "": "app"
+            "": "app",
+            "create": "create"
         },
 
         app: function () {
@@ -42,6 +43,10 @@ define(function (require) {
                     appView.render();
                 }
             );
+        },
+
+        create: function () {
+            console.log("create!");
         }
     });
 });
