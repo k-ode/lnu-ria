@@ -34,12 +34,11 @@ require.config({
 });
 
 require([
-    'backbone',
-    'underscore',
+    // Load libraries that extends Backbone
     'backboneCollectionBinder',
     'util/extensions',
-    'router/router'
-], function (Backbone, _, bcb, extensions, Router) {
-    var router = new Router();
-    Backbone.history.start();
+    'app'
+], function (bcb, extensions, app) {
+    // Run app
+    app.run();
 });
