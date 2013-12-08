@@ -4,7 +4,7 @@ define(function (require) {
 
     return Backbone.View.extend({
 
-        el: '#riaApp',
+        el: '.ria-app',
         
         template: _.template(createTemplate),
 

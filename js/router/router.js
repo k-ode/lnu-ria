@@ -4,7 +4,10 @@ define(function (require) {
     var $ = require('jquery'),
         Backbone = require('backbone'),
         AppController = require('controller/app'),
-        CreateController = require('controller/create');
+        CreateController = require('controller/create'),
+        MenuView = require('view/menu');
+
+    new MenuView();
 
     return Backbone.Router.extend({
         routes: {
@@ -13,7 +16,6 @@ define(function (require) {
         },
 
         initialize: function () {
-
         },
         
         app: function () {

@@ -40,7 +40,6 @@ require([
     'backboneCollectionBinder',
     'util/extensions'
 ], function (Backbone, Router, bcb, extensions) {
-    // Run app
     new Router();
     Backbone.history.start();
 });

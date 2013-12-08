@@ -2,6 +2,7 @@ define(function (require) {
     'use strict';
 
     var $ = require('jquery'),
+        _ = require('underscore'),
         Backbone = require('backbone'),
         when = require('when'),
         CollectionBinder = require('backboneCollectionBinder'),
@@ -13,7 +14,7 @@ define(function (require) {
 
     return Backbone.View.extend({
 
-        el: '#riaApp',
+        el: '.ria-app',
         
         template: _.template(appTemplate),
 
