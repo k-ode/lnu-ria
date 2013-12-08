@@ -3,10 +3,8 @@ define(function (require) {
 
     var $ = require('jquery'),
         Backbone = require('backbone'),
-        CollectionBinder = require('backboneCollectionBinder'),
-        RecipesView = require('view/recipes'),
-        RecipesItemView = require('view/recipes-item'),
-        when = require('when');
+        AppController = require('controller/app'),
+        CreateController = require('controller/create');
 
     return Backbone.Router.extend({
         routes: {
@@ -14,24 +12,16 @@ define(function (require) {
             "create": "create"
         },
 
-        initialize: function (options) {
-            var viewCreator = function (model) { return new RecipesItemView({ model: model }); },
-                elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(viewCreator),
-                collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
-            
-            var recipesView = new RecipesView({
-                collection: options.recipes,
-                collectionBinder: collectionBinder
-            });
-            recipesView.render();
+        initialize: function () {
+
         },
         
         app: function () {
-            console.log("app route!");
+            new AppController();
         },
 
         create: function () {
-            console.log("create route!");
+            new CreateController();
         }
     });
 });
