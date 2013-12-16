@@ -5,20 +5,15 @@ define(function (require) {
         Backbone = require('backbone'),
         _ = require('underscore');
 
-    return Backbone.View.extend({
+    var recipesView = {
         _collectionBinder: undefined,
         _filteredCollection: undefined,
         _recipesCollection: undefined,
-
-        modelCreateCount: 3,
 
         el: 'body',
 
         // Delegated events
         events: {
-            'click #createModel': 'createModel',
-            'click #removeModel': 'removeModel',
-            'click #resetCollection': 'resetCollection',
             'keyup #search': 'search'
         },
 
@@ -68,33 +63,11 @@ define(function (require) {
             this._filteredColletion.reset(newFilteredCollection);
         }, 1000),
 
-        createModel: function () {
-            this.modelCreateCount++;
-            var model = {
-                id: this.modelCreateCount,
-                name: 'recept ' + this.modelCreateCount, 
-                category: 'yoyo', 
-                instructions: 'instruction four'
-            };
-            
-            this._filteredColletion.add(model);
-            this._recipesCollection.create(model);
-        },
-
-        removeModel: function () {
-            if(this._filteredColletion.length > 0){
-                this._filteredColletion.remove(this._filteredColletion.at(this._filteredColletion.length - 1));
-                this._recipesCollection.remove(this._recipesCollection.at(this._recipesCollection.length - 1));
-            }
-        },
-
-        resetCollection: function () {
-            this._filteredColletion.reset(this._recipesCollection.models);
-        },
-
         close: function () {
             this._collectionBinder.unbind();
         }
 
-    });
+    };
+
+    return Backbone.View.extend(recipesView);
 });

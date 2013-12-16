@@ -3,19 +3,19 @@ define(function (require) {
 
     var $ = require('jquery'),
         Backbone = require('backbone'),
+        MenuView = require('view/menu'),
         AppController = require('controller/app'),
-        CreateController = require('controller/create'),
-        MenuView = require('view/menu');
+        CreateController = require('controller/create');
 
-    new MenuView();
-
-    return Backbone.Router.extend({
+    var router = {
+        
         routes: {
             "": "app",
             "create": "create"
         },
 
         initialize: function () {
+            new MenuView();
         },
         
         app: function () {
@@ -25,5 +25,8 @@ define(function (require) {
         create: function () {
             new CreateController();
         }
-    });
+        
+    };
+
+    return Backbone.Router.extend(router);
 });

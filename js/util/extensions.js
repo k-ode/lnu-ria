@@ -3,8 +3,8 @@ define(function (require) {
     
     var _ = require('underscore'),
         Backbone = require('backbone'),
-        extensions,
-        names;
+        extensions = undefined,
+        names = undefined;
     
     function filterCollection (collection, filterValue) {
         return collection.filter(function (data) {

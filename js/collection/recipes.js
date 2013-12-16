@@ -5,7 +5,8 @@ define(function (require) {
         Recipe = require('model/recipe'),
         when = require('when');
 
-    return Backbone.Collection.extend({
+    var collectionRecipes = {
+
         model: Recipe,
 
         initialize: function (options) {
@@ -16,7 +17,7 @@ define(function (require) {
             var me = this;
             
             var deferred = when.defer();
-            this.fetch({
+            me.fetch({
                 success: function () {
                     console.log("fetched!");
                     deferred.resolve(me);
@@ -25,5 +26,8 @@ define(function (require) {
             
             return deferred.promise;
         }
-    });
+        
+    };
+
+    return Backbone.Collection.extend(collectionRecipes);
 });

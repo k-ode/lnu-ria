@@ -1,8 +1,10 @@
 define(function (require) {
+    'use strict';
+    
     var Backbone = require('backbone'),
         createTemplate = require('text!template/create.html');
 
-    return Backbone.View.extend({
+    var createController = {
 
         el: '.ria-app',
         
@@ -17,5 +19,8 @@ define(function (require) {
 
             return this;
         }
-    });
+        
+    };
+
+    return Backbone.View.extend(createController);
 }); 

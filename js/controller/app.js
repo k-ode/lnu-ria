@@ -12,16 +12,15 @@ define(function (require) {
         Store = require('backboneLocalStorage'),
         appTemplate = require('text!template/app.html');
 
-    return Backbone.View.extend({
+    var appController = {
 
         el: '.ria-app',
         
         template: _.template(appTemplate),
 
         initialize: function (options) {
-            var self = this;
-            
-            var viewCreator = function (model) { return new RecipesItemView({ model: model }); },
+            var self = this,
+                viewCreator = function (model) { return new RecipesItemView({ model: model }); },
                 elManagerFactory = new Backbone.CollectionBinder.ViewManagerFactory(viewCreator),
                 collectionBinder = new Backbone.CollectionBinder(elManagerFactory);
             
@@ -46,6 +45,8 @@ define(function (require) {
 
             return this;
         }
-    });
         
+    };
+
+    return Backbone.View.extend(appController);
 });

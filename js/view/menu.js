@@ -1,9 +1,11 @@
 define(function (require) {
+    'use strict';
+    
     var $ = require('jquery'),
         _ = require('underscore'),
         menuTemplate = require('text!template/menu.html');
 
-    return Backbone.View.extend({
+    var menuView = {
 
         el: '.main-menu',
         
@@ -26,5 +28,8 @@ define(function (require) {
             $('.active').removeClass('active');
             $(ev.currentTarget).addClass('active');
         }
-    });
+        
+    };
+
+    return Backbone.View.extend(menuView);
 });

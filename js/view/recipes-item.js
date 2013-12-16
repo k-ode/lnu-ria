@@ -6,9 +6,12 @@ define(function (require) {
         _ = require('underscore'),
         recipeTemplate = require('text!template/recipe.html');
     
-    return Backbone.View.extend({
+    var recipesItemView = {
+      
         tagName: 'tr',
+        
         template: _.template(recipeTemplate),
+        
         _modelBinder: undefined,
 
         initialize: function () {
@@ -34,5 +37,7 @@ define(function (require) {
             return this;
         }
 
-    });
+    };
+
+    return Backbone.View.extend(recipesItemView);
 });
