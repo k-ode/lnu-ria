@@ -24,5 +24,9 @@
     "requirejs-text": "~2.0.10",
     "mocha": "~1.14.0",
     "when": "~2.6.0"
+  },
+  "devDependencies": {
+    "sinon-chai": "~2.4.0",
+    "sinon": "~1.7.3"
   }
 }

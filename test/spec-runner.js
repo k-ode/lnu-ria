@@ -15,6 +15,9 @@ require.config({
         backboneLocalStore: {
             deps: ['backbone'],
             exports: 'Store'
+        },
+        sinon: {
+            exports: 'sinon'
         }
     },
     
@@ -24,11 +27,14 @@ require.config({
         backbone: '../vendor/backbone/backbone',
         backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async.js',
         chai: '../vendor/chai/chai',
+        sinon: '../vendor/sinon/lib/sinon',
+        sinonChai: '../vendor/sinon-chai/lib/sinon-chai'
     }
 });
 
 require([
-    'spec/util/extensions.spec'
+    'spec/util/extensions.spec',
+    'spec/view/recipes.spec'
 ], function () {
     if (window.mochaPhantomJS) {
         mochaPhantomJS.run();
