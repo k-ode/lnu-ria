@@ -9,14 +9,11 @@ define(function (require) {
         RecipesView = require('view/recipes'),
         RecipesItemView = require('view/recipes-item'),
         Recipes = require('collection/recipes'),
-        Store = require('backboneLocalStorage'),
-        appTemplate = require('text!template/app.html');
+        Store = require('backboneLocalStorage');
 
     var appController = {
-
-        el: '.ria-app',
         
-        template: _.template(appTemplate),
+        recipesView: undefined,
 
         initialize: function (options) {
             var self = this,
@@ -30,18 +27,17 @@ define(function (require) {
             
             collection.load().then(
                 function success (recipes) {
-                    var recipesView = new RecipesView({
+                    self.recipesView = new RecipesView({
                         collection: recipes,
                         collectionBinder: collectionBinder
                     });
                     self.render();
-                    recipesView.render();
                 }
             );
         },
 
         render: function () {
-            this.$el.html(this.template);
+            this.recipesView.render();
 
             return this;
         }

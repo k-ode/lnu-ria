@@ -3,14 +3,18 @@ define(function (require) {
 
     var $ = require('jquery'),
         Backbone = require('backbone'),
-        _ = require('underscore');
+        _ = require('underscore'),
+        recipesTemplate = require('text!template/recipes.html');
 
     var recipesView = {
+
         _collectionBinder: undefined,
         _filteredCollection: undefined,
         _recipesCollection: undefined,
 
-        el: 'body',
+        el: '.ria-app',
+        
+        template: _.template(recipesTemplate),
 
         // Delegated events
         events: {
