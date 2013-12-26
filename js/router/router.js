@@ -8,6 +8,8 @@ define(function (require) {
         CreateController = require('controller/create');
 
     var router = {
+        appController: undefined,
+        createController: undefined,
         
         routes: {
             "": "app",
@@ -19,14 +21,20 @@ define(function (require) {
         },
         
         app: function () {
-            new AppController();
+            if (!appController)
+                this.appController = new AppController();
+            else
+                this.appController.render();
         },
 
         create: function () {
-            new CreateController();
+            if (!createController)
+                this.createController = new CreateController();
+            else
+                this.createController.render();
         }
         
     };
-
+    
     return Backbone.Router.extend(router);
 });
