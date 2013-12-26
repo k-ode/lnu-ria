@@ -1,15 +1,14 @@
 /*jshint expr: true*/
 
-define([
-    'backbone',
-    'underscore',
-    'chai',
-    '../../../js/util/extensions'
-], function(Backbone, _, chai, extensions) {
+define(function(require) {
     'use strict';
 
-    var expect = chai.expect;
-
+    var Backbone = require('backbone'),
+        _ = require('underscore'),
+        chai = require('chai'),
+        extensions = '../../../js/util/extensions',
+        expect = chai.expect;
+    
     describe("util.extensions", function () {
         var recipies, col;
 
