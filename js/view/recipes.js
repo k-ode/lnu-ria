@@ -8,10 +8,8 @@ define(function (require) {
 
     var recipesView = {
 
-        _collectionBinder: undefined,
-        _filteredCollection: undefined,
-        _recipesCollection: undefined,
-
+        controller: undefined,
+        
         el: '.ria-app',
         
         template: _.template(recipesTemplate),
@@ -23,53 +21,30 @@ define(function (require) {
 
         // Needs at least a Backbone collection and collectionBinder.
         initialize: function (options) {
-            _.bindAll(this, 'render');
-
-            if (_.isUndefined(options.collectionBinder)) 
-                throw 'collectionBinder must be defined';
-            if (_.isUndefined(options.collection))
-                throw 'collection must be defined';
-
-            var collectionBinder = options.collectionBinder,
-                collection = options.collection;
-               
-            // DOM elements
-            this.$search = this.$('#search');
-
-            // Keep a copy of original collection to filter on
-            this._recipesCollection = collection;
-            this._filteredColletion = collection.clone();
-
-            // Collection binder
-            this._collectionBinder = collectionBinder;
+            if (_.isUndefined(options.controller))
+                throw 'contoller must be defined';
+            this.controller = options.controller;
         },
 
         render: function () {
             this.$el.html(this.template);
-            this._collectionBinder.bind(this._filteredColletion, this.$('tbody'));
+            
+            // DOM elements
+            var ctrl = this.controller;
+            ctrl._collectionBinder.bind(
+                ctrl._filteredColletion, this.$('tbody')
+            );
+            this.$search = this.$('#search');
 
             return this;
         },
 
-        search: function () {
-            var searchString = this.getSearchString();
-            
-            this.filterBySearch(searchString);
+        search: function () {    
+            this.controller.filterBySearch(this.getSearchString());
         },
 
         getSearchString: function () {
             return this.$search.val().trim();
-        },
-
-        // Throttle updates to keep UI responsive
-        filterBySearch: _.throttle(function (searchString) {
-            this._filteredColletion.reset(this._recipesCollection.models);
-            var newFilteredCollection = this._filteredColletion.filterCollection(searchString);
-            this._filteredColletion.reset(newFilteredCollection);
-        }, 1000),
-
-        close: function () {
-            this._collectionBinder.unbind();
         }
 
     };
