@@ -21,14 +21,14 @@ define(function (require) {
         },
         
         app: function () {
-            if (!appController)
+            if (!this.appController)
                 this.appController = new AppController();
             else
                 this.appController.render();
         },
 
         create: function () {
-            if (!createController)
+            if (!this.createController)
                 this.createController = new CreateController();
             else
                 this.createController.render();

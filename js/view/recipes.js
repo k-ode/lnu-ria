@@ -23,7 +23,7 @@ define(function (require) {
 
         // Needs at least a Backbone collection and collectionBinder.
         initialize: function (options) {
-            _.bindAll(this, 'render'); // fixes loss of context for 'this' within methods
+            _.bindAll(this, 'render');
 
             if (_.isUndefined(options.collectionBinder)) 
                 throw 'collectionBinder must be defined';
@@ -45,8 +45,9 @@ define(function (require) {
         },
 
         render: function () {
+            this.$el.html(this.template);
             this._collectionBinder.bind(this._filteredColletion, this.$('tbody'));
-            
+
             return this;
         },
 

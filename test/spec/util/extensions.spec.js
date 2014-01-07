@@ -6,7 +6,7 @@ define(function(require) {
     var Backbone = require('backbone'),
         _ = require('underscore'),
         chai = require('chai'),
-        extensions = '../../../js/util/extensions',
+        extensions = require('../../../js/util/extensions'),
         expect = chai.expect;
     
     describe("util.extensions", function () {
