@@ -19,7 +19,6 @@ define(function (require) {
             'keyup #search': 'search'
         },
 
-        // Needs at least a Backbone collection and collectionBinder.
         initialize: function (options) {
             if (_.isUndefined(options.controller))
                 throw 'contoller must be defined';
