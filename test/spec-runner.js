@@ -22,13 +22,18 @@ require.config({
     },
     
     paths: {
+        when: '../vendor/when/when',
+        text: '../vendor/requirejs-text/text',
         jquery: '../vendor/jquery/jquery',
         underscore: '../vendor/underscore/underscore',
         backbone: '../vendor/backbone/backbone',
         backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async.js',
+        backboneModelBinder: '../vendor/backbone.modelBinder/Backbone.ModelBinder',
+        backboneCollectionBinder: '../vendor/backbone.modelBinder/Backbone.CollectionBinder',
         chai: '../vendor/chai/chai',
-        sinon: '../vendor/sinon/lib/sinon',
-        sinonChai: '../vendor/sinon-chai/lib/sinon-chai'
+        sinon: '../vendor/sinon/sinon',
+        // Templates
+        recipesTemplate: 'template/recipes.html'
     }
 });
 

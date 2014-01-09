@@ -4,15 +4,13 @@ define(function (require) {
     var $ = require('jquery'),
         Backbone = require('backbone'),
         _ = require('underscore'),
-        recipesTemplate = require('text!template/recipes.html');
+        recipesTemplate = require('text!recipesTemplate');
 
     var recipesView = {
 
         controller: undefined,
         
         el: '.ria-app',
-        
-        template: _.template(recipesTemplate),
 
         // Delegated events
         events: {
@@ -21,8 +19,9 @@ define(function (require) {
 
         initialize: function (options) {
             if (_.isUndefined(options.controller))
-                throw 'contoller must be defined';
+                throw 'controller must be defined';
             this.controller = options.controller;
+            this.template = options.template || _.template(recipesTemplate);
         },
 
         render: function () {

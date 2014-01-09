@@ -29,7 +29,9 @@ require.config({
         backbone: '../vendor/backbone/backbone',
         backboneLocalStorage: '../vendor/backbone.localStorage.async/backbone.localStorage.async',
         backboneModelBinder: '../vendor/backbone.modelBinder/Backbone.ModelBinder',
-        backboneCollectionBinder: '../vendor/backbone.modelBinder/Backbone.CollectionBinder'
+        backboneCollectionBinder: '../vendor/backbone.modelBinder/Backbone.CollectionBinder',
+        // Templates
+        recipesTemplate: 'template/recipes.html'
     }
 });
 

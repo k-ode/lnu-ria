@@ -25,8 +25,6 @@ module.exports = function(grunt) {
                     { expand: true, cwd: 'bower_components/', src: ['underscore/underscore.js'], dest: 'vendor/' },
                     { expand: true, cwd: 'bower_components/', src: ['requirejs-text/text.js'], dest: 'vendor/' },
                     { expand: true, cwd: 'bower_components/', src: ['when/when.js'], dest: 'vendor/' },
-                    { expand: true, cwd: 'bower_components/', src: ['sinon-chai/lib/sinon-chai.js'], dest: 'vendor/' },
-                    { expand: true, cwd: 'bower_components/', src: ['sinon/lib/sinon.js'], dest: 'vendor/' },
                     { expand: true, flatten: 'true', cwd: 'bower_components/', src: ['normalize.scss/_normalize.scss'], dest: 'sass/vendor/' }
                 ]
             }
