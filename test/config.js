@@ -13,8 +13,8 @@ module.exports = function (config) {
             {pattern: 'static/**/*.js', included: false, served: true, watched: true},
             {pattern: 'static/**/*.html', included: false, served: true, watched: true},
 
-            'tests/requirejs-tests-config.js',
-            {pattern: 'tests/spec/**/*.js', included: true, served: true, watched: true}
+            'test/requirejs-test-config.js',
+            {pattern: 'test/spec/**/*.js', included: true, served: true, watched: true}
         ],
 
         exclude: [
@@ -46,7 +46,7 @@ module.exports = function (config) {
 
         plugins: [
             'karma-mocha',
-            'karma-phantomjs-launches',
+            'karma-phantomjs-launcher',
             'karma-chrome-launcher',
             'karma-firefox-launcher'
         ]
