@@ -2,11 +2,10 @@
 
 // Mixin and function libraries
 // ------------------------------------------------
-
 @import "compass";
 
 // Global config
-@import 'config';
+@import "config";
 
 // Vendor CSS libraries
 // ------------------------------------------------
@@ -16,9 +15,12 @@
 // ------------------------------------------------
 //@import fonts
 
-@import "base/**/*";
+// Base
+@import "base/elements";
 
-@import "module/**/*";
+// Module
+@import "module/grid";
+@import "module/site";
 
 //@import "state"
 

@@ -577,12 +577,12 @@ table {
   border-spacing: 0;
 }
 
-/* line 61, ../../../../bin/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
+/* line 61, ../../../../../bin/ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
 * html {
   font-size: 100%;
 }
 
-/* line 64, ../../../../bin/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
+/* line 64, ../../../../../bin/ruby200/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
 html {
   font-size: 16px;
   line-height: 1.5em;
@@ -631,7 +631,7 @@ ul li, ol li {
 }
 
 /* line 38, ../sass/base/_elements.scss */
-h1, .h1 {
+h1 {
   font-size: 2em;
   line-height: 1.125em;
   margin-top: 0em;
@@ -639,7 +639,7 @@ h1, .h1 {
 }
 
 /* line 44, ../sass/base/_elements.scss */
-h2, .h2 {
+h2 {
   font-size: 1.5em;
   line-height: 1.5em;
   margin-top: 0em;
@@ -647,7 +647,7 @@ h2, .h2 {
 }
 
 /* line 50, ../sass/base/_elements.scss */
-h3, .h3 {
+h3 {
   font-size: 1.1875em;
   line-height: 1.26316em;
   margin-top: 0em;
