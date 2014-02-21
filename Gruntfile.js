@@ -15,17 +15,20 @@ module.exports = function(grunt) {
             js: {
                 files: ['js/**/*.js', 'test/**/*.js'],
                 tasks: ['jshint', 'karma:unit:run']
+            },
+            css: {
+                files: ['static/assets/css/main.css']
             }
         },
 
         karma: {
             test: {
-                configFile: 'tests/config.js',
+                configFile: 'test/config.js',
                 singleRun: true,
                 browsers: ['PhantomJS']
             },
             unit: {
-                configFile: 'tests/config.js',
+                configFile: 'test/config.js',
                 background: true,
                 browsers: ['Chrome']
             }
@@ -35,8 +38,7 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     port: 8080,
-                    base: './',
-                    keepalive: true
+                    base: './'
                 }
             }
         },
@@ -52,18 +54,28 @@ module.exports = function(grunt) {
         }
     });
 
+    // Only run jshint on changed files
+    var changedFiles = Object.create(null);
+    var onChange = grunt.util._.debounce(function() {
+        grunt.config('jshint.all.src', Object.keys(changedFiles));
+        changedFiles = Object.create(null);
+    }, 200);
+    grunt.event.on('watch', function(action, filepath) {
+        changedFiles[filepath] = action;
+        onChange();
+    });
+
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-contrib-sass');
 
     // Default task(s).
     grunt.registerTask('run', [
-        'jshint',
+        //'jshint',
         'connect',
-        'karma:unit',
+        //'karma:unit',
         'watch'
     ]);
     grunt.registerTask('test', ['jshint', 'karma:test']);
